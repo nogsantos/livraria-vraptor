@@ -1,6 +1,7 @@
 package br.com.nogsantos.controller;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
 import br.com.nogsantos.modelo.Estante;
 import br.com.nogsantos.modelo.Livro;
@@ -13,6 +14,7 @@ import javax.inject.Inject;
  * @since Dec 16, 2014
  */
 @Controller
+@Path("livros")
 public class LivrosController {
 
     private final Result result;
@@ -35,9 +37,10 @@ public class LivrosController {
         Estante estante = new UmaEstanteQualquer();
         estante.guarda(livro);
     }
-
+    @Path("lista")
     public List<Livro> lista() {
-        return new UmaEstanteQualquer().todosOsLivros();
+        Estante estante = new UmaEstanteQualquer();
+        return estante.todosOsLivros();
     }
     
     public void edita(String isbn){
