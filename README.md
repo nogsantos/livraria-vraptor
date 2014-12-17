@@ -3,4 +3,4 @@ livraria-vraptor4
 
 Projeto da livraria do livro sobre o VRaptor 4 www.casadocodigo.com.br/products/livro-vraptor
 
-current page 48.
+current page 69.
