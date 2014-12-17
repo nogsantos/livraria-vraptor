@@ -1,8 +1,3 @@
-<%-- 
-    Document   : salva
-    Created on : Dec 16, 2014, 8:13:53 PM
-    Author     : nogsantos
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

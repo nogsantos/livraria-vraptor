@@ -5,7 +5,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
 import br.com.nogsantos.modelo.Estante;
 import br.com.nogsantos.modelo.Livro;
-import br.com.nogsantos.persistencia.UmaEstanteQualquer;
+import br.com.nogsantos.persistencia.UmaEstanteNoBancoDeDados;
 import java.util.List;
 import javax.inject.Inject;
 /**
@@ -17,34 +17,54 @@ import javax.inject.Inject;
 @Path("livros")
 public class LivrosController {
 
-    private final Result result;
+    private Result result;
+    private Estante estante;
     /**
      * @deprecated CDI eyes only
      */
-    public LivrosController() {
-        this(null);
-    }
+    LivrosController() {}
+    /**
+     * Constructor 
+     */
     @Inject
-    public LivrosController(Result result) {
-        this.result = result;
+    public LivrosController(Result result, Estante estante) {
+        this.result  = result;
+        this.estante = estante;
     }
-    
+    /**
+     * Formulário 
+     */
+    @Path("formulario")
     public void formulario() {
 
     }
-
-    public void salva(Livro livro) {
-        Estante estante = new UmaEstanteQualquer();
-        estante.guarda(livro);
+    /**
+     * Método salvar
+     */
+    @Path("salva")
+    public void salva(Livro livro) {        
+        this.estante.guarda(livro);
+        this.result.include("mensagem", "Livro salvo com sucesso!");        
+        this.result.redirectTo(this).lista();
     }
+    /**
+     * Método listar 
+     */
     @Path("lista")
-    public List<Livro> lista() {
-        Estante estante = new UmaEstanteQualquer();
-        return estante.todosOsLivros();
+    public List<Livro> lista() {        
+        return this.estante.todosOsLivros();
     }
-    
-    public void edita(String isbn){
-        
+    /**
+     * Método editar
+     */
+    @Path("edita/{isbn}")
+    public void edita(String isbn){    	
+    	Livro livroEncontrado = this.estante.buscaPorIsbn(isbn);
+    	/*
+    	 * Mesmo resultado do método formulário. 
+    	 */
+    	this.result.include(livroEncontrado);
+    	this.result.of(this).formulario();
     }
 
 }

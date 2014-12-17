@@ -29,6 +29,12 @@
             <artifactId>vraptor</artifactId>
             <version>4.1.2</version>
         </dependency>
+        
+        <dependency>
+            <groupId>br.com.caelum.vraptor</groupId>
+            <artifactId>vraptor-jpa</artifactId>
+            <version>1.0.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.jboss.weld.servlet</groupId>
@@ -95,11 +101,16 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.7</version>
         </dependency>
-        
+        <!--Drive postgres-->
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.1-901-1.jdbc4</version>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>vraptor-blank-project</finalName>
+        <finalName>livraria-admin</finalName>
         <outputDirectory>${basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>
         <plugins>
             <plugin>
